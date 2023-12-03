@@ -43,8 +43,9 @@ const deleteUser = async (req, res) => {
   const signout = (req, res) => {
     req.session.destroy();
     res.json(200);
-  };
+  }; 
   const account = async (req, res) => {
+    console.log("added to the session", req.session['currentUser']);
     res.json(req.session['currentUser']);
   };
 
