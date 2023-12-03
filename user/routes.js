@@ -1,13 +1,14 @@
 import * as dao from "./dao.js";
 function UserRoutes(app) {
+  var currentSignedInUser=null;
   const createUser = async (req, res) => {
     const user = await dao.createUser(req.body);
       res.json(user);
     };
-const deleteUser = async (req, res) => {
-    const status = await dao.deleteUser(req.params.userId);
-    res.json(status);
-};
+  const deleteUser = async (req, res) => {
+      const status = await dao.deleteUser(req.params.userId);
+      res.json(status);
+  };
   const findAllUsers = async (req, res) => {
     const users = await dao.findAllUsers();
     res.json(users);
@@ -41,6 +42,7 @@ const deleteUser = async (req, res) => {
     res.json(currentUser);
     console.log("in node, current user is ", currentUser);
     console.log("in node, current user is set to req as ", req.session['currentUser']);
+    currentSignedInUser = currentUser;
   };
   const signout = (req, res) => {
     req.session.destroy();
@@ -50,6 +52,7 @@ const deleteUser = async (req, res) => {
     console.log("req is ", req);
     console.log("added to the session", req.session['currentUser']);
     res.json(req.session['currentUser']);
+    res.json(currentSignedInUser);
   };
 
   app.post("/api/users", createUser);
