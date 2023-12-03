@@ -49,9 +49,9 @@ function UserRoutes(app) {
     res.json(200);
   }; 
   const account = async (req, res) => {
-    console.log("req is ", req);
     console.log("added to the session", req.session['currentUser']);
-    res.json(req.session['currentUser']);
+    console.log("global variable is ", currentSignedInUser);
+//    res.json(req.session['currentUser']);
     res.json(currentSignedInUser);
   };
 
