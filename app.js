@@ -35,7 +35,7 @@ app.use(
  cors({
    credentials: true,
 //    origin: process.env.FRONTEND_URL
-    origin: "https://shimmering-capybara-4a625a.netlify.app/"
+    origin: "https://shimmering-capybara-4a625a.netlify.app"
 })
 );
 const sessionOptions = {
