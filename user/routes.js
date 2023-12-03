@@ -39,6 +39,8 @@ const deleteUser = async (req, res) => {
     const currentUser = await dao.findUserByCredentials(username, password);
     req.session['currentUser'] = currentUser;
     res.json(currentUser);
+    console.log("current user is ", currentUser);
+    console.log("current user is set to req as ", req.session['currentUser']);
   };
   const signout = (req, res) => {
     req.session.destroy();
