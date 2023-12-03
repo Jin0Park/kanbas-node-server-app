@@ -31,18 +31,18 @@ function UserRoutes(app) {
       res.status(400).json(
         { message: "Username already taken" });
     }
-    const currentUser = await dao.createUser(req.body);
-    req.session['currentUser'] = currentUser;
-    res.json(currentUser);
+    // const currentUser = await dao.createUser(req.body);
+    // req.session['currentUser'] = currentUser;
+    // res.json(currentUser);
     currentSignedInUser = currentUser;
   };
   const signin = async (req, res) => {
     const { username, password } = req.body;
     const currentUser = await dao.findUserByCredentials(username, password);
-    req.session['currentUser'] = currentUser;
-    res.json(currentUser);
-    console.log("in node, current user is ", currentUser);
-    console.log("in node, current user is set to req as ", req.session['currentUser']);
+    // req.session['currentUser'] = currentUser;
+    // res.json(currentUser);
+    // console.log("in node, current user is ", currentUser);
+    // console.log("in node, current user is set to req as ", req.session['currentUser']);
     currentSignedInUser = currentUser;
   };
   const signout = (req, res) => {
@@ -50,8 +50,8 @@ function UserRoutes(app) {
     res.json(200);
   }; 
   const account = async (req, res) => {
-    console.log("added to the session", req.session['currentUser']);
-    console.log("global variable is ", currentSignedInUser);
+    // console.log("added to the session", req.session['currentUser']);
+    // console.log("global variable is ", currentSignedInUser);
 //    res.json(req.session['currentUser']);
     res.json(currentSignedInUser);
   };
